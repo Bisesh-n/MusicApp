@@ -9,14 +9,12 @@ const authMiddleware = require('./middlewares/authMiddleware');
 require('dotenv').config();
 
 const app = express();
+app.use(express.static('public'));
 
 // Middleware
 app.use(bodyParser.json());
 
-// Routes
-app.use('/api/users', userRoutes);
-app.use('/api/artists', artistRoutes);
-app.use('/api/songs', songRoutes);
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
