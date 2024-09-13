@@ -1,7 +1,10 @@
 document.getElementById('register-form').addEventListener('submit', async (event) => {
     event.preventDefault();
 
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
     const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     try {
@@ -10,7 +13,7 @@ document.getElementById('register-form').addEventListener('submit', async (event
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ firstname, lastname, username, email, password }),
         });
 
         const data = await response.json();
@@ -24,3 +27,15 @@ document.getElementById('register-form').addEventListener('submit', async (event
         console.error('Error:', error);
     }
 });
+
+
+function togglePassword() {
+    const passwordField = document.getElementById('password');
+    const passwordFieldType = passwordField.getAttribute('type');
+
+    if (passwordFieldType === 'password') {
+        passwordField.setAttribute('type', 'text');
+    } else {
+        passwordField.setAttribute('type', 'password');
+    }
+}

@@ -10,13 +10,26 @@
     <div class="container">
         <h1>Admin Panel Registration</h1>
         <form id="register-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <label for="firstname">Your First Name:</label>
+            <input type="text" id="firstname" name="firstname" placeholder="John" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="lastname">Your First Name:</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Doe" required>
 
-            <button type="submit">Register</button>
+            <label for="username">Create a username:</label>
+            <input type="text" id="username" name="username" placeholder="for example: John1" required>
+
+            <label for="email">Enter Your Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="email@example.com" required>
+
+            <label for="password">Create a password:</label>
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Enter your password">
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+            </div><br>
+
+            <button type="submit">Register</button><br><br>
+
             <p>Already have an account? <a href="index.html">Login here</a></p>
         </form>
     </div>

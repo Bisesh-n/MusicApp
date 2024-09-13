@@ -25,3 +25,15 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
         console.error('Error:', error);
     }
 });
+
+
+function togglePassword() {
+    const passwordField = document.getElementById('password');
+    const passwordFieldType = passwordField.getAttribute('type');
+
+    if (passwordFieldType === 'password') {
+        passwordField.setAttribute('type', 'text');
+    } else {
+        passwordField.setAttribute('type', 'password');
+    }
+}

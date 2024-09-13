@@ -13,9 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     
             const users = await response.json();
-            document.getElementById('artist-list').innerHTML = ''
+            document.getElementById('artist-list').style.display = 'none'
+            document.getElementById('user-list').style.display = 'block'
             document.getElementById('user-list').innerHTML = 
-                users.map(user => `<p>${user.username}</p>`).join('');
+                users.map(user => `
+                    <div>
+                        <h2>${user.username}</h2>
+                        <span><b>Full Name</b>: ${user.firstname} ${user.lastname}</span>
+                        <span><b>Email</b>: ${user.email}</span>
+                        <span><b>Created At</b>: ${new Date(user.createdAt).toLocaleString()}</span>
+                        <span><b>Updated At</b>: ${new Date(user.createdAt).toLocaleString()}</span>
+                    </div>`)
+                    .join('');
             
         } catch (error) {
             console.error('Error fetching users:', error);
@@ -27,14 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // show artists
     document.getElementById('show-artists').addEventListener('click', async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/artists', {
+            const response = await fetch('http://localhost:5000/api/artists/', {
                 headers: { 'x-auth-token': token }
             });
     
             const artists = await response.json();
-            document.getElementById('user-list').innerHTML = ''
+            document.getElementById('user-list').style.display = 'none'
+            document.getElementById('artist-list').style.display = 'block'
             document.getElementById('artist-list').innerHTML = 
-                artists.map(artist => `<p>${artist.name}</p>`).join('');
+                artists.map(artist => `
+                    <div>
+                        <h2>${artist.name}</h2>
+                        <span><b>Id</b>: ${artist._id}</span>
+                    </div>`)
+                    .join('');
             
         } catch (error) {
             console.error('Error fetching artists:', error);
