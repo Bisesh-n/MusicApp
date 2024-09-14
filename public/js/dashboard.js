@@ -271,6 +271,18 @@ document.addEventListener('DOMContentLoaded', () => {
     //logout
     document.getElementById('logout').addEventListener('click', () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
         window.location.href = 'index.html';
     });
+});
+
+
+
+// show logged in user's username
+document.addEventListener('DOMContentLoaded', () => {
+    const username = localStorage.getItem('username');
+
+    if (username) {
+        document.getElementById('user-info').innerHTML = `${username}`;
+    }
 });

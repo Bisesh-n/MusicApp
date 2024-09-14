@@ -1,5 +1,5 @@
-document.getElementById('login-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -10,20 +10,30 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ username, password })  // Send username and password
         });
 
-        const data = await response.json();
+        const result = await response.json();
+        console.log(result);
 
         if (response.ok) {
-            localStorage.setItem('token', data.token);
-            window.location.href = 'dashboard.html';
+            // Store token and username in localStorage
+            localStorage.setItem('token', result.token);
+            localStorage.setItem('username', result.username);  // Store the username
+
+            // Redirect to dashboard
+            window.location.href = '/dashboard.html';
         } else {
-            alert(data.message);
+            alert(result.msg || 'An error occurred. Please try again.');
         }
+
+        
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error logging in:', error);
+        alert('An error occurred. Please try again.');
     }
+
+    
 });
 
 

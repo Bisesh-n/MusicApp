@@ -1,25 +1,8 @@
-/* public/css/styles.css */
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-    width: 80%;
-    max-width: 800px;
-    margin: 15px auto;
-    padding: 10px 20px;
-}
-
-.dashboard-title {
-    margin: 5px 0;
 }
 
 form {
@@ -28,6 +11,7 @@ form {
 }
 
 label {
+    font-size: 14px;
     margin: 5px 0;
 }
 
@@ -76,6 +60,7 @@ nav ul li:hover {
     background: #e2e6ff;
 }
 
+/* for li active state */
 .li-active{
     color: white !important;
     background: #4242ff !important;
@@ -86,6 +71,40 @@ nav ul li:hover {
 
 
 
+/* For the main containers */
+.container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    width: 80%;
+    max-width: 800px;
+    margin: 15px auto;
+    padding: 10px 20px;
+}
+
+.forLoginReg{
+    width: 60%;
+}
+@media screen and (min-width: 895px) {
+    .forLoginReg{
+        width: 30%;
+    }
+}
+
+.forLoginReg h2{
+    margin: 10px 0 20px;
+}
+
+.dashboard-title {
+    margin: 5px 0;
+}
+
+
+
+
+
+/* For the navigation tabs and list boxes */
 #user-tab, #artist-tab, #song-tab{
     display: none;
 }
@@ -126,12 +145,9 @@ nav ul li:hover {
     margin-bottom: 10px;
 }
 
-.delete-btn{
-    cursor: pointer;
-}
 
 
-
+/* for password field */
 .password-container {
     position: relative;
     display: flex;
@@ -145,6 +161,12 @@ nav ul li:hover {
 }
 
 
+
+
+/* custom buttons */
+.delete-btn{
+    cursor: pointer;
+}
 
 .danger{
     background-color: #e05454;
@@ -163,7 +185,6 @@ nav ul li:hover {
 
 
 
-/* ----------------------------------------------- */
 /*for the popup */
 .popup {
     background: rgba(0, 0, 0, 0.5);

@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Admin Panel Login</h2>
+    <div class="container forLoginReg">
+        
+        <h2>Admin Login</h2>
         <form id="login-form">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 
             <label for="password">Password:</label>
             <div class="password-container">
-                <input type="password" id="password" placeholder="Enter your password">
+                <input type="password" id="password"  name="username" placeholder="Enter your password" required>
                 <span class="toggle-password" onclick="togglePassword()">👁️</span>
             </div>
             <br>

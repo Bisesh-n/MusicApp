@@ -2,6 +2,8 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+
+//register user
 exports.register = async (req, res) => {
   const { firstname, lastname, username, email, password } = req.body;
 
@@ -62,21 +64,36 @@ exports.register = async (req, res) => {
 };
 
 
-exports.login = async (req, res) => {
-  try {
-    const user = await User.findOne({ username: req.body.username });
-    if (!user) return res.status(400).send('Invalid credentials');
-    const match = await bcrypt.compare(req.body.password, user.password);
-    if (!match) return res.status(400).send('Invalid credentials');
-    const token = jwt.sign({ id: user._id }, 'secretkey');
-    res.json({ token });
 
+//login user
+exports.login = async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+      // Find user by username
+      const user = await User.findOne({ username });
+      if (!user) {
+          return res.status(400).json({ msg: 'Invalid username or password' });
+      }
+
+      // Check password
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+          return res.status(400).json({ msg: 'Password does not match for this user' });
+      }
+
+      // If valid, generate token
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      res.json({ token, username: user.username });
   } catch (error) {
-    res.status(400).send(error.message);
+      console.error(error.message);
+      res.status(500).send('Server error');
   }
 };
 
 
+
+//get users
 exports.getUsers = async (req, res) => {
   try {
       const users = await User.find().select('firstname lastname username email createdAt updatedAt');
@@ -88,6 +105,8 @@ exports.getUsers = async (req, res) => {
 };
 
 
+
+//update user
 exports.updateUser = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -97,6 +116,9 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+
+
+//delete user
 exports.deleteUser = async (req, res) => {
   try {
       // Find user by ID and delete
