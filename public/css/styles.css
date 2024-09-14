@@ -107,7 +107,7 @@ nav ul li a:hover {
     margin: 0 !important;
 }
 
-#artist-list div ul li{
+#artist-list div ul li, #song-list div ul li{
     margin-bottom: 10px;
 }
 

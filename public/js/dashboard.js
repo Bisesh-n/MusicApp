@@ -106,10 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // show songs
     document.getElementById('show-songs').addEventListener('click', async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/artists', {
+            const response = await fetch('http://localhost:5000/api/songs', {
                 headers: { 'x-auth-token': token }
             });
-            const artists = await response.json();
+            const songs = await response.json();
 
             
             document.getElementById('user-list').style.display = 'none'
@@ -121,9 +121,23 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('show-users').style.background = '#e7e7ff'
             document.getElementById('show-artists').style.background = '#e7e7ff'
 
-            document.getElementById('song-list').innerHTML = '';
+            const songList = document.getElementById('song-list');
+            songList.innerHTML = '';
     
-            
+            songs.forEach(song => {
+                const songItem = document.createElement('div');
+                songItem.innerHTML = `
+                    <h2>${song.title}</h2>
+                    <ul>
+                        <li>By: ${song.artist.name}</li>
+                        <li>Album: ${song.album}</li>
+                        <li>Genre: ${song.genre}</li>
+                        <li>Year: ${song.year}</li>
+                        <li>Updated at: ${new Date(song.updatedAt).toLocaleString()}</li>
+                    </ul>
+                `;
+                songList.appendChild(songItem);
+            });
     
         } catch (error) {
             console.error('Error fetching artists:', error);

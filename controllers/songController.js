@@ -12,6 +12,18 @@ exports.getSongsByArtist = async (req, res) => {
   }
 };
 
+
+exports.getAllSongs = async (req, res) => {
+    try {
+        const songs = await Song.find().populate('artist', 'name'); // Populate artist name
+        res.json(songs);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+
 exports.createSong = async (req, res) => {
   try {
       const { title, album, year, genre, artist } = req.body;
