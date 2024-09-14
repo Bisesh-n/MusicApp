@@ -26,7 +26,7 @@
                 <!-- Content will be loaded here via JavaScript -->
                 
                 <div id="user-tab">
-                    <button id="createUser">+ Create User</button><br><br>
+                    <button id="openCreateUserPopup">+ Create User</button><br><br>
 
                     <div id="user-list">
                         <!-- Usernames will be displayed here -->
@@ -35,6 +35,8 @@
 
 
                 <div id="artist-tab">
+                    <button id="openCreateArtistPopup">+ Create Artist</button><br><br>
+
                     <div id="artist-list">
                         <!-- Artist names will be displayed here -->
                     </div>
@@ -42,6 +44,8 @@
 
 
                 <div id="song-tab">
+                    <button id="openCreateSongPopup">+ Add a Song</button><br><br>
+
                     <div id="song-list">
                         <!-- Song names will be displayed here -->
                     </div>
@@ -51,10 +55,16 @@
             <br><br><br>
 
 
-            <button id="logout" class="warning">Log out</button>
+            <button id="logout" class="danger">Log out</button>
 
         </div>
 
+        <div id="popup-container"></div>
+
         <script src="js/dashboard.js"></script>
+        <!-- <script src="js/register.js"></script> -->
+        <script src="js/createUserPopup.js"></script>
+        <script src="js/createArtistPopup.js"></script>
+        <script src="/js/createSongPopup.js"></script>
     </body>
 </html>

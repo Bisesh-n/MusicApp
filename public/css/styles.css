@@ -8,13 +8,14 @@ body {
 }
 
 .container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
     width: 80%;
     max-width: 800px;
     margin: 15px auto;
     padding: 10px 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-title {
@@ -30,26 +31,28 @@ label {
     margin: 5px 0;
 }
 
-input {
+input, select {
+    border-radius: 7px;
+    border: 1px solid #ddd;
+
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-
     flex: 1;
 }
 
 button {
-    padding: 10px;
-    background-color: #007bff;
     color: #fff;
+    background-color: #2b78ff;
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    transition: .3s;
+
+    padding: 10px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #236ae6;
 }
 
 nav ul {
@@ -58,18 +61,27 @@ nav ul {
 }
 
 nav ul li {
-    display: inline;
-    background: #e7e7ff;
-    color: #007bff;
+    color: #5d5dfd;
+    background: #ededff;
     border-radius: 25px;
     cursor: pointer;
-
+    transition: .3s;
+    
+    display: inline;
     margin-right: 35px;
     padding: 10px 20px;
 }
 
 nav ul li:hover {
-    background: #ccccf9;
+    background: #e2e6ff;
+}
+
+.li-active{
+    color: white !important;
+    background: #4242ff !important;
+}
+.li-active:hover{
+    background: #3b3be6 !important;
 }
 
 
@@ -85,10 +97,10 @@ nav ul li:hover {
 
 
 #user-list div, #artist-list div, #song-list div{
-    background-color: #f5f5fe;
-    color: #1e338b;
-    border-radius: 15px;
     font-size: 14px;
+    color: #1e338b;
+    background-color: #f5f5fe;
+    border-radius: 15px;
 
     display: flex;
     flex-direction: column;
@@ -103,7 +115,7 @@ nav ul li:hover {
 }
 
 #user-list div h2, #artist-list div h2, #song-list div h2{
-    color: #ff9737;
+    color: #eea533;
     margin: 0 !important;
 
     display: flex;
@@ -113,6 +125,11 @@ nav ul li:hover {
 #artist-list div ul li, #song-list div ul li{
     margin-bottom: 10px;
 }
+
+.delete-btn{
+    cursor: pointer;
+}
+
 
 
 .password-container {
@@ -137,8 +154,34 @@ nav ul li:hover {
 }
 
 .warning{
-    background-color: #ffa329;
+    background-color: #e99321;
 }
 .warning:hover{
-    background-color: #e99321;
+    background-color: #d98415;
+}
+
+
+
+
+/* ----------------------------------------------- */
+/*for the popup */
+.popup {
+    background: rgba(0, 0, 0, 0.5);
+    
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.popup-content {
+    font-size: 13px;
+    background: white;
+    border-radius: 15px;
+
+    padding: 15px;
+    width: 440px;
 }

@@ -103,7 +103,9 @@ async function deleteSong(songId, songTitle) {
 }
 
 
+
 /////////////////////////////////////////////////////////////////////
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -127,16 +129,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('song-tab').style.display = 'none'
             document.getElementById('user-tab').style.display = 'block'
 
-            document.getElementById('show-users').style.background = '#2b2b4f'
-            document.getElementById('show-artists').style.background = '#e7e7ff'
-            document.getElementById('show-songs').style.background = '#e7e7ff'
+            document.getElementById('show-users').classList.add("li-active")
+            document.getElementById('show-artists').classList.remove("li-active")
+            document.getElementById('show-songs').classList.remove("li-active")
 
             document.getElementById('user-list').innerHTML = 
                 users.map(user => `
                     <div>
                         <h2>
                             ${user.username}
-                            <button id="deleteUser" class="danger" onclick="deleteUser('${user._id}', '${user.username}')">Delete</button>
+                            <span id="deleteUser" class="delete-btn" title="Delete user" onclick="deleteUser('${user._id}', '${user.username}')">🗑️</span>
                         </h2>
                         <span><b>Full Name</b>: ${user.firstname} ${user.lastname}</span>
                         <span><b>Email</b>: ${user.email}</span>
@@ -165,9 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('song-tab').style.display = 'none'
             document.getElementById('artist-tab').style.display = 'block'
 
-            document.getElementById('show-artists').style.background = '#2b2b4f'
-            document.getElementById('show-users').style.background = '#e7e7ff'
-            document.getElementById('show-songs').style.background = '#e7e7ff'
+            document.getElementById('show-artists').classList.add("li-active")
+            document.getElementById('show-users').classList.remove("li-active")
+            document.getElementById('show-songs').classList.remove("li-active")
 
             document.getElementById('artist-list').innerHTML = '';
                 // To Loop through each artist and their songs
@@ -179,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 artistDiv.innerHTML = `
                     <h2>
                         ${artist.name} (${artist.songs.length} songs)
-                        <button id="deleteArtist" class="danger" onclick="deleteArtist('${artist._id}', '${artist.name}')">Delete</button>
+                        <span id="deleteArtist" class="delete-btn" title="Delete Artist" onclick="deleteArtist('${artist._id}', '${artist.name}')">🗑️</span>
                     </h2>
                     <span>Last Updated: ${updatedAt}</span>
                 `;
@@ -193,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const songItem = document.createElement('li');
 
                         songItem.innerHTML = `
-                            ${song.title}, <i>(${song.year})</i>
+                            ${song.title} <i>(${song.year})</i>
                         `;
                         songList.appendChild(songItem);
                     });
@@ -233,9 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('song-tab').style.display = 'block'
 
             
-            document.getElementById('show-songs').style.background = '#2b2b4f'
-            document.getElementById('show-users').style.background = '#e7e7ff'
-            document.getElementById('show-artists').style.background = '#e7e7ff'
+            document.getElementById('show-songs').classList.add("li-active")
+            document.getElementById('show-users').classList.remove("li-active")
+            document.getElementById('show-artists').classList.remove("li-active")
 
             const songList = document.getElementById('song-list');
             songList.innerHTML = '';
@@ -245,14 +247,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 songItem.innerHTML = `
                     <h2>
                         ${song.title}
-                        <button id="deleteSong" class="danger" onclick="deleteSong('${song._id}', '${song.title}')">Delete</button>
+                        <span id="deleteSong" class="delete-btn" title="Delete Song" onclick="deleteSong('${song._id}', '${song.title}')">🗑️</span>
                     </h2>
                     <ul>
-                        <li>By: ${song.artist.name}</li>
-                        <li>Album: ${song.album}</li>
-                        <li>Genre: ${song.genre}</li>
-                        <li>Year: ${song.year}</li>
-                        <li>Last updated: ${new Date(song.updatedAt).toLocaleString()}</li>
+                        <li><b>Artist</b>: ${song.artist.name}</li>
+                        <li><b>Album</b>: ${song.album}</li>
+                        <li><b>Genre</b>: ${song.genre}</li>
+                        <li><b>Year</b>: ${song.year}</li>
+                        <li><b>Last updated</b>: ${new Date(song.updatedAt).toLocaleString()}</li>
                     </ul>
                 `;
                 songList.appendChild(songItem);
@@ -262,29 +264,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching artists:', error);
         }
     });
-
-
-
-
-    //to delete user
-    async function deleteUser(userId) {
-        try {
-            const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
-                method: 'DELETE',
-                headers: { 'x-auth-token': token }
-            });
-    
-            if (response.ok) {
-                alert('User deleted');
-                // loadUsers();
-            } else {
-                const error = await response.json();
-                alert(`Error deleting user: ${error.msg}`);
-            }
-        } catch (error) {
-            console.error('Error deleting user:', error);
-        }
-    }
 
 
 
