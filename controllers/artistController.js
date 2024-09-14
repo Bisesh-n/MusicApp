@@ -1,12 +1,12 @@
 const Artist = require('../models/artist');
 const Song = require('../models/song');
-const csv = require('csv-parser');
+const { Parser } = require('json2csv');
 const fs = require('fs');
 
 exports.getArtists = async (req, res) => {
     try {
         // Fetch all artists
-        const artists = await Artist.find();
+        const artists = await Artist.find().sort({ updatedAt: -1 });
 
         // For each artist, fetch their related songs and include timestamps
         const artistsWithSongs = await Promise.all(artists.map(async artist => {
@@ -82,13 +82,15 @@ exports.deleteArtist = async (req, res) => {
 
 
 exports.getArtistSongs = async (req, res) => {
-  try {
-    const songs = await Song.find({ artist: req.params.id });
-    res.json(songs);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
+    try {
+        const songs = await Song.find({ artist: req.params.id });
+        res.json(songs);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 };
+
+
 
 exports.importArtistsCSV = async (req, res) => {
   try {
@@ -107,11 +109,23 @@ exports.importArtistsCSV = async (req, res) => {
   }
 };
 
+
+
 exports.exportArtistsCSV = async (req, res) => {
   try {
-    const artists = await Artist.find();
-    res.csv(artists, true);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
+    // Fetch artists from the database
+    const artists = await Artist.find().sort({ updatedAt: -1 });  // Sort by updatedAt DESC
+
+    // Define the fields to include in the CSV
+    const fields = ['name', 'createdAt', 'updatedAt', 'songs'];
+    const json2csvParser = new Parser({ fields });
+    const csv = json2csvParser.parse(artists);  // Convert JSON data to CSV
+
+    // Set headers to trigger a file download
+    res.header('Content-Type', 'text/csv');
+    res.header('Content-Disposition', 'attachment; filename=artists.csv');
+    res.send(csv);  // Send CSV data as the response
+} catch (err) {
+    res.status(500).json({ message: 'Server Error' });
+}
 };

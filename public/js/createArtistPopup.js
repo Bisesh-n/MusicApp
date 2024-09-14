@@ -24,7 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('createArtistForm').addEventListener('submit', async (event) => {
                 event.preventDefault(); // Prevent form from submitting normally
 
-                const name = document.getElementById('artistname').value;
+                const name = document.getElementById('artistName').value;
+                const dob = document.getElementById('artistDob').value;
+                const gender = document.getElementById('artistGender').value;
+                const address = document.getElementById('artistAddress').value;
+                const first_release_year = document.getElementById('artistDebut').value;
+                const no_of_albums_released = document.getElementById('artistAlbums').value;
 
                 try {
                     const response = await fetch('http://localhost:5000/api/artists', {
@@ -33,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             'Content-Type': 'application/json',
                             'x-auth-token': token
                         },
-                        body: JSON.stringify({ name })
+                        body: JSON.stringify({ name, dob, gender, address, first_release_year, no_of_albums_released })
                     });
 
                     if (response.ok) {

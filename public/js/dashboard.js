@@ -142,6 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         </h2>
                         <span><b>Full Name</b>: ${user.firstname} ${user.lastname}</span>
                         <span><b>Email</b>: ${user.email}</span>
+                        <span><b>Phone</b>: ${user.phone}</span>
+                        <span><b>Date of Birth</b>: ${user.dob}</span>
+                        <span><b>Gender</b>: ${user.gender}</span>
+                        <span><b>Address</b>: ${user.address}</span>
                         <span><b>Created At</b>: ${new Date(user.createdAt).toLocaleString()}</span>
                         <span><b>Updated At</b>: ${new Date(user.createdAt).toLocaleString()}</span>
                     </div>`)
@@ -177,13 +181,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Create a div for each artist
                 const artistDiv = document.createElement('div');
                 const updatedAt = new Date(artist.updatedAt).toLocaleString();
+                const createdAt = new Date(artist.createdAt).toLocaleString();
                 
                 artistDiv.innerHTML = `
                     <h2>
                         ${artist.name} (${artist.songs.length} songs)
                         <span id="deleteArtist" class="delete-btn" title="Delete Artist" onclick="deleteArtist('${artist._id}', '${artist.name}')">🗑️</span>
                     </h2>
-                    <span>Last Updated: ${updatedAt}</span>
+                    <span><b>Date of Birth</b>: ${artist.dob}</span>
+                    <span><b>Gender</b>: ${artist.gender}</span>
+                    <span><b>Address</b>: ${artist.address}</span>
+                    <span><b>Debut Year</b>: ${artist.first_release_year}</span>
+                    <span><b>Albums Released</b>: ${artist.no_of_albums_released}</span>
+                    <span><b>Created at</b>: ${createdAt}</span>
+                    <span><b>Last Updated</b>: ${updatedAt}</span>
                 `;
     
                 // Create a list for songs
@@ -271,18 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //logout
     document.getElementById('logout').addEventListener('click', () => {
         localStorage.removeItem('token');
-        localStorage.removeItem('username');
         window.location.href = 'index.html';
     });
-});
-
-
-
-// show logged in user's username
-document.addEventListener('DOMContentLoaded', () => {
-    const username = localStorage.getItem('username');
-
-    if (username) {
-        document.getElementById('user-info').innerHTML = `${username}`;
-    }
 });

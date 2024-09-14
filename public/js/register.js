@@ -5,6 +5,10 @@ document.getElementById('register-form').addEventListener('submit', async (event
     const lastname = document.getElementById('lastname').value;
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const dob = document.getElementById('dob').value;
+    const gender = document.getElementById('gender').value;
+    const address = document.getElementById('address').value;
     const password = document.getElementById('password').value;
 
     try {
@@ -13,7 +17,7 @@ document.getElementById('register-form').addEventListener('submit', async (event
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ firstname, lastname, username, email, password }),
+            body: JSON.stringify({ firstname, lastname, username, email, phone, dob, gender, address, password }),
         });
 
         const data = await response.json();

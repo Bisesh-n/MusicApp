@@ -28,6 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const lastname = document.getElementById('lastname').value;
                 const username = document.getElementById('username').value;
                 const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const dob = document.getElementById('dob').value;
+                const gender = document.getElementById('gender').value;
+                const address = document.getElementById('address').value;
                 const password = document.getElementById('password').value;
 
                 try {
@@ -37,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             'Content-Type': 'application/json',
                             'x-auth-token': token
                         },
-                        body: JSON.stringify({ firstname, lastname, username, email, password })
+                        body: JSON.stringify({ firstname, lastname, username, email, phone, dob, gender, address, password })
                     });
 
                     if (response.ok) {

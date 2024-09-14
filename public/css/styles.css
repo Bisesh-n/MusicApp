@@ -5,6 +5,10 @@ body {
     padding: 0;
 }
 
+h2{
+    margin: 0 0 20px;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -83,6 +87,10 @@ nav ul li:hover {
     padding: 10px 20px;
 }
 
+.forLoginReg h2{
+    margin: 10px 0 20px;
+}
+
 .forLoginReg{
     width: 60%;
 }
@@ -90,10 +98,6 @@ nav ul li:hover {
     .forLoginReg{
         width: 30%;
     }
-}
-
-.forLoginReg h2{
-    margin: 10px 0 20px;
 }
 
 .dashboard-title {
@@ -202,7 +206,9 @@ nav ul li:hover {
     font-size: 13px;
     background: white;
     border-radius: 15px;
-
+    
     padding: 15px;
     width: 440px;
+    height: 93%;
+    overflow-y: scroll;
 }

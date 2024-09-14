@@ -5,10 +5,10 @@ const jwt = require('jsonwebtoken');
 
 //register user
 exports.register = async (req, res) => {
-  const { firstname, lastname, username, email, password } = req.body;
+  const { firstname, lastname, username, email, phone, dob, gender, address, password } = req.body;
 
   if (!firstname || !lastname || !username || !email || !password) {
-        return res.status(400).json({ message: 'First Name, Last Name, Username, email, and password are required' });
+        return res.status(400).json({ message: 'First Name, Last Name, Username, email, phone, dob, gender, address and password are required' });
     }
 
     try {
@@ -24,6 +24,10 @@ exports.register = async (req, res) => {
             lastname,
             username,
             email,
+            phone,
+            dob,
+            gender,
+            address,
             password
         });
 
@@ -52,6 +56,10 @@ exports.register = async (req, res) => {
                 lastname: user.lastname, 
                 username: user.username,
                 email: user.email,
+                phone: user.phone,
+                dob: user.dob,
+                gender: user.gender,
+                address:  user.address,
                 createdAt: user.createdAt,
                 updatedAt: user.updatedAt 
             }
@@ -67,53 +75,45 @@ exports.register = async (req, res) => {
 
 //login user
 exports.login = async (req, res) => {
-  const { username, password } = req.body;
-
   try {
-      // Find user by username
-      const user = await User.findOne({ username });
-      if (!user) {
-          return res.status(400).json({ msg: 'Invalid username or password' });
-      }
+        const user = await User.findOne({ username: req.body.username });
 
-      // Check password
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-          return res.status(400).json({ msg: 'Password does not match for this user' });
-      }
+            if (!user) return res.status(400).send('Invalid credentials');
 
-      // If valid, generate token
-      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-      res.json({ token, username: user.username });
-  } catch (error) {
-      console.error(error.message);
-      res.status(500).send('Server error');
-  }
+        const match = await bcrypt.compare(req.body.password, user.password);
+            if (!match) return res.status(400).send('Invalid credentials');
+
+        const token = jwt.sign({ id: user._id }, 'secretkey');
+        res.json({ token });
+
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 };
 
 
 
 //get users
 exports.getUsers = async (req, res) => {
-  try {
-      const users = await User.find().select('firstname lastname username email createdAt updatedAt');
-      res.status(200).json(users);
-  } catch (error) {
-      console.error(error.message);
-      res.status(500).send('Server error');
-  }
+    try {
+        const users = await User.find().sort({ updatedAt: -1 }).select('firstname lastname username email phone dob gender address createdAt updatedAt');
+        res.status(200).json(users);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server error');
+    }
 };
 
 
 
 //update user
 exports.updateUser = async (req, res) => {
-  try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(user);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(user);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 };
 
 
@@ -129,8 +129,8 @@ exports.deleteUser = async (req, res) => {
       }
 
       res.json({ msg: 'User deleted' });
-  } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server error');
-  }
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
 };

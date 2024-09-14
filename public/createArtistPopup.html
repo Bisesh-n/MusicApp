@@ -9,11 +9,34 @@
 </head>
 <body>
     <div id="createArtistPopup" class="popup">
+
         <div class="popup-content">
             <h2>Create New Artist</h2>
+
             <form id="createArtistForm">
-                <label for="artistname">Artist's Name:</label>
-                <input type="text" id="artistname" name="artistname" placeholder="John Lennon" required><br><br>
+                <label for="artistName">Artist's Name:</label>
+                <input type="text" id="artistName" name="artistName" placeholder="John Lennon" required><br>
+
+                <label for="artistDob">Date of Birth:</label>
+                <input type="date" id="artistDob" name="artistDob" placeholder="Example: 1997-05-30" required><br>
+                
+                <label for="artistGender">Gender:</label>
+                <!-- <input type="text" id="artistGender" name="artistGender" required><br> -->
+                 <select name="artistGender" id="artistGender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                 </select>
+
+                <label for="artistAddress">Address:</label>
+                <input type="text" id="artistAddress" name="artistAddress"  placeholder="Example: New York, USA" required><br>
+
+                <label for="artistDebut">Debut Year:</label>
+                <input type="Text" id="artistDebut" name="artistDebut" placeholder="Example: 1997" required><br>
+
+                <label for="artistAlbums">Number of albums:</label>
+                <input type="text" id="artistAlbums" name="artistAlbums" placeholder="Example: 6" required><br>
                 
                 <button type="submit" class="popup-button">Create Artist</button><br>
                 <button type="button" id="closePopup" class="danger">Close</button>

@@ -15,7 +15,7 @@ exports.getSongsByArtist = async (req, res) => {
 
 exports.getAllSongs = async (req, res) => {
     try {
-        const songs = await Song.find().populate('artist', 'name'); // Populate artist name
+        const songs = await Song.find().sort({ updatedAt: -1 }).populate('artist', 'name'); // Populate artist name
         res.json(songs);
     } catch (err) {
         console.error(err.message);
