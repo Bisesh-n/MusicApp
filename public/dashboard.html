@@ -1,44 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Admin Dashboard</h1>
-        <br>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <div class="container">
 
-        <nav>
-            <ul>
-                <li id="show-users">Users</li>
-                <li id="show-artists">Artists</li>
-                <li id="show-songs">Songs</li>
-            </ul>
-        </nav><br>
+            <h2 class="dashboard-title">Admin Dashboard</h2>
+            <br>
 
-        <div id="content">
-            <!-- Content will be loaded here via JavaScript -->
-            
-            <div id="user-list">
-                <!-- Usernames will be displayed here -->
+            <nav>
+                <ul>
+                    <li id="show-users">Users</li>
+                    <li id="show-artists">Artists</li>
+                    <li id="show-songs">Songs</li>
+                </ul>
+            </nav>
+            <br>
+
+
+            <div id="content">
+                <!-- Content will be loaded here via JavaScript -->
+                
+                <div id="user-tab">
+                    <button id="createUser">+ Create User</button><br><br>
+
+                    <div id="user-list">
+                        <!-- Usernames will be displayed here -->
+                    </div>
+                </div>
+
+
+                <div id="artist-tab">
+                    <div id="artist-list">
+                        <!-- Artist names will be displayed here -->
+                    </div>
+                </div>
+
+
+                <div id="song-tab">
+                    <div id="song-list">
+                        <!-- Song names will be displayed here -->
+                    </div>
+                </div>
+
             </div>
+            <br><br><br>
 
 
-            <div id="artist-list">
-                <!-- Artist names will be displayed here -->
-            </div>
+            <button id="logout" class="warning">Log out</button>
 
-            <div id="song-list">
-                <!-- Song names will be displayed here -->
-            </div>
         </div>
 
-        <br><br><br>
-        <button id="logout" class="warning">Logout</button>
-    </div>
-    <script src="js/dashboard.js"></script>
-</body>
+        <script src="js/dashboard.js"></script>
+    </body>
 </html>

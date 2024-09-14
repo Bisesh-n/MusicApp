@@ -1,9 +1,118 @@
+//to delete user
+async function deleteUser(userId, username) {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        window.location.href = 'index.html';
+    }
+
+    const confirmDelete = confirm(`Are you sure you want to delete the user: ${username}?`);
+
+    if (confirmDelete) {
+        try {
+            const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
+                method: 'DELETE',
+                headers: { 'x-auth-token': token }
+            });
+
+            if (response.ok) {
+                alert('User deleted');
+                // Reload the user list after deletion
+                document.getElementById('show-users').click();  // Re-fetch and display updated list
+            } else {
+                const error = await response.json();
+                alert(`Error deleting user: ${error.msg}`);
+            }
+        } catch (error) {
+            console.error('Error deleting user:', error);
+        }
+    } else {
+        // User clicked "Cancel", so do nothing
+        alert('Deletion canceled');
+    }
+}
+
+
+
+//to delete artist
+async function deleteArtist(artistId, artistName) {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        window.location.href = 'index.html';
+    }
+
+    const confirmDelete = confirm(`Are you sure you want to delete the artist: ${artistName}? This will also delete all their songs.`);
+
+    if (confirmDelete) {
+        try {
+            const response = await fetch(`http://localhost:5000/api/artists/${artistId}`, {
+                method: 'DELETE',
+                headers: { 'x-auth-token': token }
+            });
+
+            if (response.ok) {
+                alert('Artist and related songs deleted');
+                // Reload the artist list after deletion
+                document.getElementById('show-artists').click();  // Re-fetch and display updated list
+            } else {
+                const error = await response.json();
+                alert(`Error deleting artist: ${error.msg}`);
+            }
+        } catch (error) {
+            console.error('Error deleting artist:', error);
+        }
+    } else {
+        alert('Deletion canceled');
+    }
+}
+
+
+
+//to delete song
+async function deleteSong(songId, songTitle) {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        window.location.href = 'index.html';
+    }
+
+    const confirmDelete = confirm(`Are you sure you want to delete the song: ${songTitle}?`);
+
+    if (confirmDelete) {
+        try {
+            const response = await fetch(`http://localhost:5000/api/songs/${songId}`, {
+                method: 'DELETE',
+                headers: { 'x-auth-token': token }
+            });
+
+            if (response.ok) {
+                alert('Song deleted');
+                // Reload the song list after deletion
+                document.getElementById('show-songs').click();  // Re-fetch and display updated list
+            } else {
+                const error = await response.json();
+                alert(`Error deleting song: ${error.msg}`);
+            }
+        } catch (error) {
+            console.error('Error deleting song:', error);
+        }
+    } else {
+        alert('Deletion canceled');
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('token');
 
     if (!token) {
         window.location.href = 'index.html';
     }
+
 
     // show users
     document.getElementById('show-users').addEventListener('click', async () => {
@@ -14,9 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
             const users = await response.json();
 
-            document.getElementById('artist-list').style.display = 'none'
-            document.getElementById('song-list').style.display = 'none'
-            document.getElementById('user-list').style.display = 'block'
+            document.getElementById('artist-tab').style.display = 'none'
+            document.getElementById('song-tab').style.display = 'none'
+            document.getElementById('user-tab').style.display = 'block'
 
             document.getElementById('show-users').style.background = '#2b2b4f'
             document.getElementById('show-artists').style.background = '#e7e7ff'
@@ -25,7 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('user-list').innerHTML = 
                 users.map(user => `
                     <div>
-                        <h2>${user.username}</h2>
+                        <h2>
+                            ${user.username}
+                            <button id="deleteUser" class="danger" onclick="deleteUser('${user._id}', '${user.username}')">Delete</button>
+                        </h2>
                         <span><b>Full Name</b>: ${user.firstname} ${user.lastname}</span>
                         <span><b>Email</b>: ${user.email}</span>
                         <span><b>Created At</b>: ${new Date(user.createdAt).toLocaleString()}</span>
@@ -38,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    
 
 
     // show artists
@@ -48,9 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const artists = await response.json();
             
-            document.getElementById('user-list').style.display = 'none'
-            document.getElementById('song-list').style.display = 'none'
-            document.getElementById('artist-list').style.display = 'block'
+            document.getElementById('user-tab').style.display = 'none'
+            document.getElementById('song-tab').style.display = 'none'
+            document.getElementById('artist-tab').style.display = 'block'
 
             document.getElementById('show-artists').style.background = '#2b2b4f'
             document.getElementById('show-users').style.background = '#e7e7ff'
@@ -64,7 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const updatedAt = new Date(artist.updatedAt).toLocaleString();
                 
                 artistDiv.innerHTML = `
-                    <h2>${artist.name} <i>(${artist.songs.length} songs)</i></h2>
+                    <h2>
+                        ${artist.name} (${artist.songs.length} songs)
+                        <button id="deleteArtist" class="danger" onclick="deleteArtist('${artist._id}', '${artist.name}')">Delete</button>
+                    </h2>
                     <span>Last Updated: ${updatedAt}</span>
                 `;
     
@@ -112,9 +228,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const songs = await response.json();
 
             
-            document.getElementById('user-list').style.display = 'none'
-            document.getElementById('artist-list').style.display = 'none'
-            document.getElementById('song-list').style.display = 'block'
+            document.getElementById('user-tab').style.display = 'none'
+            document.getElementById('artist-tab').style.display = 'none'
+            document.getElementById('song-tab').style.display = 'block'
 
             
             document.getElementById('show-songs').style.background = '#2b2b4f'
@@ -127,13 +243,16 @@ document.addEventListener('DOMContentLoaded', () => {
             songs.forEach(song => {
                 const songItem = document.createElement('div');
                 songItem.innerHTML = `
-                    <h2>${song.title}</h2>
+                    <h2>
+                        ${song.title}
+                        <button id="deleteSong" class="danger" onclick="deleteSong('${song._id}', '${song.title}')">Delete</button>
+                    </h2>
                     <ul>
                         <li>By: ${song.artist.name}</li>
                         <li>Album: ${song.album}</li>
                         <li>Genre: ${song.genre}</li>
                         <li>Year: ${song.year}</li>
-                        <li>Updated at: ${new Date(song.updatedAt).toLocaleString()}</li>
+                        <li>Last updated: ${new Date(song.updatedAt).toLocaleString()}</li>
                     </ul>
                 `;
                 songList.appendChild(songItem);
@@ -143,6 +262,29 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching artists:', error);
         }
     });
+
+
+
+
+    //to delete user
+    async function deleteUser(userId) {
+        try {
+            const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
+                method: 'DELETE',
+                headers: { 'x-auth-token': token }
+            });
+    
+            if (response.ok) {
+                alert('User deleted');
+                // loadUsers();
+            } else {
+                const error = await response.json();
+                alert(`Error deleting user: ${error.msg}`);
+            }
+        } catch (error) {
+            console.error('Error deleting user:', error);
+        }
+    }
 
 
 

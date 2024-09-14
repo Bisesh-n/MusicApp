@@ -27,6 +27,7 @@ exports.getArtists = async (req, res) => {
     }
 };
 
+
 exports.createArtist = async (req, res) => {
   try {
     const artist = new Artist(req.body);
@@ -37,6 +38,8 @@ exports.createArtist = async (req, res) => {
   }
 };
 
+
+
 exports.updateArtist = async (req, res) => {
   try {
     const artist = await Artist.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -46,14 +49,37 @@ exports.updateArtist = async (req, res) => {
   }
 };
 
+
+
+// exports.deleteArtist = async (req, res) => {
+//   try {
+//     await Artist.findByIdAndDelete(req.params.id);
+//     res.send('Artist deleted');
+//   } catch (error) {
+//     res.status(400).send(error.message);
+//   }
+// };
 exports.deleteArtist = async (req, res) => {
   try {
-    await Artist.findByIdAndDelete(req.params.id);
-    res.send('Artist deleted');
+      const artistId = req.params.id;
+
+      // Find and delete all songs related to the artist
+      await Song.deleteMany({ artist: artistId });
+
+      // Then delete the artist
+      const result = await Artist.findByIdAndDelete(artistId);
+
+      if (!result) {
+          return res.status(404).json({ msg: 'Artist not found' });
+      }
+
+      res.status(200).json({ msg: 'Artist and related songs deleted successfully' });
   } catch (error) {
-    res.status(400).send(error.message);
+      res.status(500).json({ msg: 'Server error', error });
   }
 };
+
+
 
 exports.getArtistSongs = async (req, res) => {
   try {
