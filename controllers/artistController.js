@@ -4,12 +4,27 @@ const csv = require('csv-parser');
 const fs = require('fs');
 
 exports.getArtists = async (req, res) => {
-  try {
-    const artists = await Artist.find();
-    res.json(artists);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
+    try {
+        // Fetch all artists
+        const artists = await Artist.find();
+
+        // For each artist, fetch their related songs and include timestamps
+        const artistsWithSongs = await Promise.all(artists.map(async artist => {
+            const songs = await Song.find({ artist: artist._id });
+            return {
+                ...artist._doc,  // Spread artist data
+                songs,           // Attach related songs
+                createdAt: artist.createdAt, // Include artist timestamps
+                updatedAt: artist.updatedAt
+            };
+        }));
+
+        // Return the artists with their related songs and timestamps
+        res.status(200).json(artistsWithSongs);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server error');
+    }
 };
 
 exports.createArtist = async (req, res) => {

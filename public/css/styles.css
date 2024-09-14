@@ -59,22 +59,32 @@ nav ul {
 
 nav ul li {
     display: inline;
+    background: #e7e7ff;
+    color: #007bff;
+    border-radius: 25px;
+    cursor: pointer;
+
     margin-right: 35px;
     padding: 10px 20px;
-    background: #e7e7ff;
-    border-radius: 25px;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: #007bff;
+nav ul li:hover {
+    background: #d9d9ff;
+
 }
 
 nav ul li a:hover {
     text-decoration: underline;
 }
 
-#user-list div, #artist-list div{
+
+#user-list, #artist-list, #song-list{
+    max-height: 365px;
+    overflow-y: scroll;
+}
+
+
+#user-list div, #artist-list div, #song-list div{
     background-color: #f5f5fe;
     color: #1e338b;
     border-radius: 15px;
@@ -84,18 +94,22 @@ nav ul li a:hover {
     flex-direction: column;
     gap: 1rem;
     
+    width: 93%;
     padding: 15px 20px;
 }
 
-#user-list div:not(:last-child), #artist-list div:not(:last-child){
+#user-list div:not(:last-child), #artist-list div:not(:last-child), #song-list div:not(:last-child){
     margin-bottom: 15px;
 }
 
-#user-list div h2, #artist-list div h2{
+#user-list div h2, #artist-list div h2, #song-list div h2{
     color: #ff9737;
     margin: 0 !important;
 }
 
+#artist-list div ul li{
+    margin-bottom: 10px;
+}
 
 
 .password-container {
