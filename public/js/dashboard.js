@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('user-list').innerHTML = 
                 users.map(user => `
-                    <div>
+                    <div class="info-div">
                         <h2>
                             ${user.username}
                             <span id="deleteUser" class="delete-btn" title="Delete user" onclick="deleteUser('${user._id}', '${user.username}')">🗑️</span>
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span><b>Gender</b>: ${user.gender}</span>
                         <span><b>Address</b>: ${user.address}</span>
                         <span><b>Created At</b>: ${new Date(user.createdAt).toLocaleString()}</span>
-                        <span><b>Updated At</b>: ${new Date(user.createdAt).toLocaleString()}</span>
+                        <span><b>Last updated</b>: ${new Date(user.createdAt).toLocaleString()}</span>
                     </div>`)
                     .join('');
             
@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             artists.forEach(artist => {
                 // Create a div for each artist
                 const artistDiv = document.createElement('div');
+                artistDiv.classList.add("info-div");
                 const updatedAt = new Date(artist.updatedAt).toLocaleString();
                 const createdAt = new Date(artist.createdAt).toLocaleString();
                 
@@ -255,6 +256,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
             songs.forEach(song => {
                 const songItem = document.createElement('div');
+                songItem.classList.add("info-div");
+                
                 songItem.innerHTML = `
                     <h2>
                         ${song.title}

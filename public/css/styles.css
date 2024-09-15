@@ -3,6 +3,7 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    height: 100vh;
 }
 
 h2{
@@ -76,6 +77,15 @@ nav ul li:hover {
 
 
 /* For the main containers */
+.main-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+}
+
+
 .container {
     background: #fff;
     border-radius: 10px;
@@ -83,7 +93,7 @@ nav ul li:hover {
 
     width: 80%;
     max-width: 800px;
-    margin: 15px auto;
+    height: calc(100% - 55px);
     padding: 10px 20px;
 }
 
@@ -92,11 +102,16 @@ nav ul li:hover {
 }
 
 .forLoginReg{
-    width: 60%;
+    width: 35%;
+    overflow-y: auto;
 }
-@media screen and (min-width: 895px) {
+.forLogin{
+    height: 325px;
+}
+
+@media screen and (max-width:960px){
     .forLoginReg{
-        width: 30%;
+        width: 65%;
     }
 }
 
@@ -105,21 +120,31 @@ nav ul li:hover {
 }
 
 
+.content{
+    height: 100%;
+    height: calc(100% - 180px);
+}
+
 
 
 
 /* For the navigation tabs and list boxes */
-#user-tab, #artist-tab, #song-tab{
+.tabs{
     display: none;
+    height: calc(100% - 55px);
 }
 
-#user-list, #artist-list, #song-list{
-    max-height: 370px;
-    overflow-y: scroll;
+.lists{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    height: 100%;
+    overflow-y: auto;
 }
 
 
-#user-list div, #artist-list div, #song-list div{
+.lists .info-div{
     font-size: 14px;
     color: #1e338b;
     background-color: #f5f5fe;
@@ -129,15 +154,11 @@ nav ul li:hover {
     flex-direction: column;
     gap: 1rem;
     
-    width: 93%;
+    width: calc(100% - 45px);
     padding: 15px 20px;
 }
 
-#user-list div:not(:last-child), #artist-list div:not(:last-child), #song-list div:not(:last-child){
-    margin-bottom: 15px;
-}
-
-#user-list div h2, #artist-list div h2, #song-list div h2{
+.lists .info-div h2{
     color: #eea533;
     margin: 0 !important;
 
@@ -145,7 +166,7 @@ nav ul li:hover {
     justify-content: space-between;
 }
 
-#artist-list div ul li, #song-list div ul li{
+.info-div ul li{
     margin-bottom: 10px;
 }
 
@@ -170,6 +191,7 @@ nav ul li:hover {
 /* custom buttons */
 .delete-btn{
     cursor: pointer;
+    font-size: 18px;
 }
 
 .danger{
@@ -212,3 +234,28 @@ nav ul li:hover {
     height: 93%;
     overflow-y: scroll;
 }
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: none; 
+    padding: 10px
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #dadada; 
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #cccccc; 
+  }

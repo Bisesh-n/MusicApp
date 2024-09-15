@@ -7,23 +7,26 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container forLoginReg">
-        
-        <h2>Admin Login</h2>
-        <form id="login-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
 
-            <label for="password">Password:</label>
-            <div class="password-container">
-                <input type="password" id="password"  name="username" placeholder="Enter your password" required>
-                <span class="toggle-password" onclick="togglePassword()">👁️</span>
-            </div>
-            <br>
+    <div class="main-container">
+        <div class="container forLoginReg forLogin">
+            
+            <h2>Admin Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
 
-            <button type="submit">Login</button><br><br>
-            <p>Don't have an account? <a href="register.html">Register here</a></p>
-        </form>
+                <label for="password">Password:</label>
+                <div class="password-container">
+                    <input type="password" id="password"  name="username" placeholder="Enter your password" required>
+                    <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                </div>
+                <br>
+
+                <button type="submit">Login</button><br><br>
+                <span>Don't have an account? <a href="register.html">Register here</a></span>
+            </form>
+        </div>
     </div>
     <script src="js/login.js"></script>
 </body>
