@@ -1,5 +1,5 @@
 const express = require('express');
-const { getArtists, createArtist, updateArtist, deleteArtist, getArtistSongs, importArtistsCSV, exportArtistsCSV } = require('../controllers/artistController');
+const { getArtists, createArtist, updateArtist, deleteArtist, getArtistSongs, exportArtistsCSV } = require('../controllers/artistController');
 const router = express.Router();
 const multer = require('multer');
 
@@ -10,7 +10,7 @@ router.post('/', createArtist);
 router.put('/:id', updateArtist);
 router.delete('/:id', deleteArtist);
 router.get('/:id/songs', getArtistSongs);
-router.post('/import', upload.single('file'), importArtistsCSV);
-router.get('/export', exportArtistsCSV);
+router.get('/export/:artistId', exportArtistsCSV);
+// router.post('/import', upload.single('file'), importArtistsCSV);
 
 module.exports = router;

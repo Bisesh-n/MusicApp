@@ -196,13 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span><b>Albums Released</b>: ${artist.no_of_albums_released}</span>
                     <span><b>Created at</b>: ${createdAt}</span>
                     <span><b>Last Updated</b>: ${updatedAt}</span>
+                    <span><b>Songs</b>:</span>
                 `;
     
                 // Create a list for songs
                 const songList = document.createElement('ul');
                 
                 if (artist.songs && artist.songs.length > 0) {
-                    // List each song with timestamps
+                    // List each song with year
                     artist.songs.forEach(song => {
                         const songItem = document.createElement('li');
 

@@ -62,7 +62,7 @@ nav ul li {
 }
 
 nav ul li:hover {
-    background: #e2e6ff;
+    background: #d4dafd;
 }
 
 /* for li active state */
@@ -131,7 +131,7 @@ nav ul li:hover {
 /* For the navigation tabs and list boxes */
 .tabs{
     display: none;
-    height: calc(100% - 55px);
+    height: 100%;
 }
 
 .lists{
@@ -139,14 +139,14 @@ nav ul li:hover {
     flex-direction: column;
     gap: 1rem;
 
-    height: 100%;
+    height: calc(100% - 60px);
     overflow-y: auto;
 }
 
 
 .lists .info-div{
     font-size: 14px;
-    color: #1e338b;
+    color: #22378f;
     background-color: #f5f5fe;
     border-radius: 15px;
 
@@ -164,6 +164,11 @@ nav ul li:hover {
 
     display: flex;
     justify-content: space-between;
+}
+
+
+.info-div ul{
+    margin: 0;
 }
 
 .info-div ul li{
@@ -208,7 +213,16 @@ nav ul li:hover {
     background-color: #d98415;
 }
 
-
+.list-btns{
+    font-size: 16px;
+    color: #5b50d4;
+    background: #e3eaff;
+}
+.list-btns:hover{
+    color: #5146c3;
+    background: #cfdbff;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
+}
 
 
 /*for the popup */
@@ -231,7 +245,7 @@ nav ul li:hover {
     
     padding: 15px;
     width: 440px;
-    height: 93%;
+    max-height: calc(100% - 55px);
     overflow-y: scroll;
 }
 
