@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="css/styles.css">
+    
+    <link rel="icon" href="/images/register.png" type="image/x-icon">
 </head>
 <body>
     
@@ -13,23 +15,23 @@
             <h2>User Registration</h2>
 
             <form id="register-form">
-                <label for="firstname">Your First Name:</label>
-                <input type="text" id="firstname" name="firstname" placeholder="John" required>
+                <label for="firstname">Your First Name</label>
+                <input type="text" id="firstname" name="firstname" placeholder="John" required><br>
 
-                <label for="lastname">Your Last Name:</label>
-                <input type="text" id="lastname" name="lastname" placeholder="Doe" required>
+                <label for="lastname">Your Last Name</label>
+                <input type="text" id="lastname" name="lastname" placeholder="Doe" required><br>
 
-                <label for="username">Create a username:</label>
-                <input type="text" id="username" name="username" placeholder="for example: John1" required>
+                <label for="username">Create a username</label>
+                <input type="text" id="username" name="username" placeholder="for example: John1" required><br>
 
                 <label for="email">Your Email Address</label>
-                <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                <input type="email" id="email" name="email" placeholder="email@example.com" required><br>
 
                 <label for="phone">Your Phone Number</label>
-                <input type="number" id="phone" name="phone" placeholder="9876543210" required>
+                <input type="number" id="phone" name="phone" placeholder="9876543210" required><br>
 
                 <label for="dob">Your Date of Birth</label>
-                <input type="date" id="dob" name="dob" required>
+                <input type="date" id="dob" name="dob" required><br>
 
                 <label for="gender">Specify Your Gender</label>
                 <select name="gender" id="gender">
@@ -37,10 +39,10 @@
                     <option value="Female">Female</option>
                     <option value="Others">Others</option>
                     <option value="Prefer not to say">Prefer not to say</option>
-                </select>
+                </select required><br>
 
                 <label for="address">Your Address</label>
-                <input type="address" id="address" name="address" placeholder="New York, USA" required>
+                <input type="address" id="address" name="address" placeholder="New York, USA" required><br>
 
                 <label for="password">Create a password</label>
                 <div class="password-container">
@@ -50,7 +52,7 @@
 
                 <button type="submit">Register</button><br><br>
 
-                <p>Already have an account? <a href="index.html">Login here</a></p>
+                <span>Already have an account? <a href="index.html">Login here</a></span>
             </form>
         </div>
     </div>

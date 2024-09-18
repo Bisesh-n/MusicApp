@@ -18,6 +18,8 @@ exports.register = async (req, res) => {
             return res.status(400).json({ message: 'Email already exists' });
         }
 
+        const formattedDob = new Date(dob).toISOString().split('T')[0]; 
+        
         // Create a new user object
         user = new User({
             firstname,
@@ -25,7 +27,7 @@ exports.register = async (req, res) => {
             username,
             email,
             phone,
-            dob,
+            dob: formattedDob,
             gender,
             address,
             password
@@ -101,6 +103,23 @@ exports.getUsers = async (req, res) => {
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Server error');
+    }
+};
+
+
+// get user by id
+exports.getUserById = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found' });
+        }
+
+        res.json(user);
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        res.status(500).json({ msg: 'Server error' });
     }
 };
 

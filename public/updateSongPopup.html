@@ -1,0 +1,27 @@
+
+<div id="updateSongPopup" class="popup">
+    <div class="popup-content">
+        <h2>Update New Song</h2>
+        <form id="updateSongForm">
+            <label for="updateTitle">Update Song Title</label>
+            <input type="text" id="updateTitle" name="updateTitle" required><br>
+
+            <label for="updateAlbum">Update Album</label>
+            <input type="text" id="updateAlbum" name="updateAlbum"><br>
+
+            <label for="updateYear">Update Year</label>
+            <input type="number" id="updateYear" name="updateYear" max="2099" step="1"><br>
+
+            <label for="updateGenre">Update Genre</label>
+            <input type="text" id="updateGenre" name="updateGenre"><br>
+
+            <label for="updateArtist">Update Artist</label>
+            <select id="updateArtist" name="updateArtist"></select><br><br>
+
+            <button type="submit" id="updateSong">Update Song</button><br>
+            <button type="button" id="closePopup" class="danger">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<script src="js/updateSongPopup.js"></script>

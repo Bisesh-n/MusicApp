@@ -1,0 +1,37 @@
+<div id="updateArtistPopup" class="popup">
+
+    <div class="popup-content">
+        <h2>Update Artist</h2>
+
+        <form id="updateArtistForm">
+            <label for="updateArtistName">Update Artist's Name</label>
+            <input type="text" id="updateArtistName" name="updateArtistName" placeholder="John Lennon" required><br>
+
+            <label for="UpdateArtistDob">Update Date of Birth</label>
+            <input type="text" id="UpdateArtistDob" name="UpdateArtistDob" placeholder="Example: 1997-05-30" required><br>
+            
+            <label for="UpdateArtistGender">Update Gender</label>
+                <select name="UpdateArtistGender" id="UpdateArtistGender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+            </select><br>
+
+            <label for="UpdateArtistAddress">Update Address</label>
+            <input type="text" id="UpdateArtistAddress" name="UpdateArtistAddress"  placeholder="Example: New York, USA" required><br>
+
+            <label for="UpdateArtistDebut">Update Debut Year</label>
+            <input type="text" id="UpdateArtistDebut" name="UpdateArtistDebut" placeholder="Example: 1997" required><br>
+
+            <label for="UpdateArtistAlbums">Update Number of albums</label>
+            <input type="text" id="UpdateArtistAlbums" name="UpdateArtistAlbums" placeholder="Example: 6" required><br><br>
+            
+            <button type="submit" id="updateArtist" class="popup-button">Update Artist</button><br>
+            <button type="button" id="closePopup" class="danger">Cancel</button>
+        </form>
+    </div>
+</div>
+
+
+<script src="js/updateArtistPopup.js"></script>

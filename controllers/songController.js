@@ -13,6 +13,25 @@ exports.getSongsByArtist = async (req, res) => {
 };
 
 
+exports.getSongById = async (req, res) => {
+  try {
+      const songId = req.params.id;
+
+      // Find the song by ID and populate the 'artist' field
+      const song = await Song.findById(songId).populate('artist', 'name'); // Populating only the artist's name
+
+      if (!song) {
+          return res.status(404).json({ msg: 'Song not found' });
+      }
+
+      res.status(200).json(song);
+  } catch (error) {
+      console.error('Error fetching song:', error);
+      res.status(500).json({ msg: 'Server error' });
+  }
+};
+
+
 exports.getAllSongs = async (req, res) => {
     try {
         const songs = await Song.find().sort({ updatedAt: -1 }).populate('artist', 'name'); // Populate artist name

@@ -30,18 +30,19 @@ input, select {
 }
 
 button {
+    font-size: 15px;
     color: #fff;
-    background-color: #2b78ff;
+    background-color: #3077f3;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: .3s;
 
-    padding: 10px;
+    padding: 12px 18px;
 }
 
 button:hover {
-    background-color: #236ae6;
+    background-color: #3171e1;
 }
 
 nav ul {
@@ -50,28 +51,29 @@ nav ul {
 }
 
 nav ul li {
-    color: #5d5dfd;
-    background: #ededff;
-    border-radius: 25px;
+    font-size: 15px;
+    color: #002f71;
+    background: #d2faff;
+    border-radius: 10px;
     cursor: pointer;
     transition: .3s;
     
     display: inline;
-    margin-right: 35px;
-    padding: 10px 20px;
+    margin-right: 30px;
+    padding: 12px 18px;
 }
 
 nav ul li:hover {
-    background: #d4dafd;
+    background: #a8f5ff;
 }
 
 /* for li active state */
 .li-active{
     color: white !important;
-    background: #4242ff !important;
+    background: #268ed3 !important;
 }
 .li-active:hover{
-    background: #3b3be6 !important;
+    background: #1c79b8 !important;
 }
 
 
@@ -106,7 +108,7 @@ nav ul li:hover {
     overflow-y: auto;
 }
 .forLogin{
-    height: 325px;
+    height: 340px;
 }
 
 @media screen and (max-width:960px){
@@ -122,7 +124,7 @@ nav ul li:hover {
 
 .content{
     height: 100%;
-    height: calc(100% - 180px);
+    height: calc(100% - 190px);
 }
 
 
@@ -146,7 +148,7 @@ nav ul li:hover {
 
 .lists .info-div{
     font-size: 14px;
-    color: #22378f;
+    color: #162872;
     background-color: #f5f5fe;
     border-radius: 15px;
 
@@ -159,7 +161,8 @@ nav ul li:hover {
 }
 
 .lists .info-div h2{
-    color: #eea533;
+    color: #f9c42d;
+    -webkit-text-stroke: 1px #dcaf2d;
     margin: 0 !important;
 
     display: flex;
@@ -194,40 +197,42 @@ nav ul li:hover {
 
 
 /* custom buttons */
-.delete-btn{
+.control-btn-box{
+    display: flex;
+    gap: 1.5rem;
+}
+
+.control-btn{
     cursor: pointer;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .danger{
-    background-color: #e05454;
+    background-color: #f36b4c;
 }
 .danger:hover{
-    background-color: #dc4040;
+    background-color: #de5e41;
 }
 
-.warning{
+/* .warning{
     background-color: #e99321;
 }
 .warning:hover{
     background-color: #d98415;
-}
+} */
 
 .list-btns{
-    font-size: 16px;
-    color: #5b50d4;
-    background: #e3eaff;
+    color: #150b7e;
+    background: #ebebff;
 }
 .list-btns:hover{
-    color: #5146c3;
-    background: #cfdbff;
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    background: #e1e1ff;
 }
 
 
 /*for the popup */
 .popup {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.55);
     
     display: none;
     position: fixed;
@@ -243,7 +248,7 @@ nav ul li:hover {
     background: white;
     border-radius: 15px;
     
-    padding: 15px;
+    padding: 15px 20px;
     width: 440px;
     max-height: calc(100% - 55px);
     overflow-y: scroll;

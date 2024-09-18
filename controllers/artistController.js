@@ -4,6 +4,9 @@ const stringify = require('csv-stringify');
 // const { parse } = require('json2csv');
 const fs = require('fs');
 
+
+
+// get artist's detail and their songs
 exports.getArtists = async (req, res) => {
     try {
         // Fetch all artists
@@ -25,6 +28,25 @@ exports.getArtists = async (req, res) => {
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Server error');
+    }
+};
+
+
+// get detail of a single artist with id
+exports.getArtistById = async (req, res) => {
+    try {
+
+        // Find the artist by ID and populate the 'songs' field
+        const artist = await Artist.findById(req.params.artistId);
+
+        if (!artist) {
+            return res.status(404).json({ msg: 'Artist not found' });
+        }
+
+        res.status(200).json(artist);
+    } catch (error) {
+        console.error('Error fetching artist:', error);
+        res.status(500).json({ msg: 'Server error' });
     }
 };
 

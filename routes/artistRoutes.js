@@ -1,11 +1,12 @@
 const express = require('express');
-const { getArtists, createArtist, updateArtist, deleteArtist, getArtistSongs, exportArtistsCSV } = require('../controllers/artistController');
+const { getArtists, getArtistById, createArtist, updateArtist, deleteArtist, getArtistSongs, exportArtistsCSV } = require('../controllers/artistController');
 const router = express.Router();
 const multer = require('multer');
 
 const upload = multer({ dest: 'uploads/' });
 
 router.get('/', getArtists);
+router.get('/:artistId', getArtistById);
 router.post('/', createArtist);
 router.put('/:id', updateArtist);
 router.delete('/:id', deleteArtist);

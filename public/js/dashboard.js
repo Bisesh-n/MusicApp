@@ -1,3 +1,6 @@
+///////////////////////////////////////////////////////////////////////////////
+//delete
+
 //to delete user
 async function deleteUser(userId, username) {
     const token = localStorage.getItem('token');
@@ -104,8 +107,9 @@ async function deleteSong(songId, songTitle) {
 
 
 
-/////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////
+// create
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -138,7 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="info-div">
                         <h2>
                             ${user.username}
-                            <span id="deleteUser" class="delete-btn" title="Delete user" onclick="deleteUser('${user._id}', '${user.username}')">🗑️</span>
+                            <span class="control-btn-box">
+                                <span id="updateUser_${user._id}" class="control-btn updateUser" title="Update user '${user.username}'">📝</span>
+                                <span id="deleteUser" class="control-btn" title="Delete user '${user.username}'" onclick="deleteUser('${user._id}', '${user.username}')">🗑️</span>
+                            </span>
                         </h2>
                         <span><b>Full Name</b>: ${user.firstname} ${user.lastname}</span>
                         <span><b>Email</b>: ${user.email}</span>
@@ -147,14 +154,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span><b>Gender</b>: ${user.gender}</span>
                         <span><b>Address</b>: ${user.address}</span>
                         <span><b>Created At</b>: ${new Date(user.createdAt).toLocaleString()}</span>
-                        <span><b>Last updated</b>: ${new Date(user.createdAt).toLocaleString()}</span>
+                        <span><b>Last updated</b>: ${new Date(user.updatedAt).toLocaleString()}</span>
                     </div>`)
                     .join('');
-            
-        } catch (error) {
+
+        }catch (error) {
             console.error('Error fetching users:', error);
         }
     });
+    
     
     
 
@@ -187,7 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 artistDiv.innerHTML = `
                     <h2>
                         ${artist.name} (${artist.songs.length} songs)
-                        <span id="deleteArtist" class="delete-btn" title="Delete Artist" onclick="deleteArtist('${artist._id}', '${artist.name}')">🗑️</span>
+                        <span class="control-btn-box">
+                            <span id="updateArtist_${artist._id}" class="control-btn updateArtist" title="Update Artist '${artist.name}'">📝</span>
+                            <span id="deleteArtist" class="control-btn" title="Delete Artist '${artist.name}'" onclick="deleteArtist('${artist._id}', '${artist.name}')">🗑️</span>
+                        </span>
                     </h2>
                     <span><b>Date of Birth</b>: ${artist.dob}</span>
                     <span><b>Gender</b>: ${artist.gender}</span>
@@ -262,7 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 songItem.innerHTML = `
                     <h2>
                         ${song.title}
-                        <span id="deleteSong" class="delete-btn" title="Delete Song" onclick="deleteSong('${song._id}', '${song.title}')">🗑️</span>
+                        <span class="control-btn-box">
+                            <span id="updateSong_${song._id}" class="control-btn updateSong" title="Update song '${song.title}'">📝</span> 
+                            <span id="deleteSong" class="control-btn" title="Delete song '${song.title}'" onclick="deleteSong('${song._id}', '${song.title}')">🗑️</span>
+                        </span>
                     </h2>
                     <ul>
                         <li><b>Artist</b>: ${song.artist.name}</li>
@@ -289,3 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'index.html';
     });
 });
+
+
+
+function myfunc(){
+    document.getElementById('show-users').click(); 
+}
