@@ -2,6 +2,8 @@
 <div id="updateUserPopup" class="popup">
     <div class="popup-content">
         <h2>Update User </h2>
+        <span id="close-icon" class="close-icon" title="Close Popup">❌</span>
+        
         <form id="UpdateUserForm">
             <input type="hidden" id="updateUserId">
 
@@ -32,7 +34,7 @@
             </select><br>
 
             <label for="updateAddress">Update Address</label>
-            <input type="text" id="updateAddress" name="updateAddress" placeholder="New York, USA" required><br><br>
+            <input type="text" id="updateAddress" name="updateAddress" placeholder="New York, USA" required><br>
 
             <!-- <label for="updatePassword">Create a password</label>
             <div class="password-container">
@@ -40,8 +42,10 @@
                 <span class="toggle-password" onclick="togglePassword()">👁️</span>
             </div><br> -->
             
-            <button type="submit" id="updateUser" class="popup-button">Update User</button><br>
-            <button type="button" id="closePopup" class="danger">Cancel</button>
+            <div class="form-actions">
+                <button type="button" id="closePopup" class="danger">Discard</button>
+                <button type="submit" id="updateUser" class="popup-button">Update User</button>
+            </div>
         </form>
     </div>
 </div>

@@ -2,6 +2,7 @@
 
     <div class="popup-content">
         <h2>Create New Artist</h2>
+        <span id="close-icon" class="close-icon" title="Close Popup">❌</span>
 
         <form id="createArtistForm">
             <label for="artistName">Artist's Name</label>
@@ -26,9 +27,11 @@
 
             <label for="artistAlbums">Number of albums</label>
             <input type="text" id="artistAlbums" name="artistAlbums" placeholder="Example: 6" required><br>
-            
-            <button type="submit" class="popup-button">Create Artist</button><br>
-            <button type="button" id="closePopup" class="danger">Close</button>
+
+            <div class="form-actions">
+                <button type="button" id="closePopup" class="danger">Cancel</button>
+                <button type="submit" class="popup-button">Create Artist</button>
+            </div>
         </form>
     </div>
 </div>

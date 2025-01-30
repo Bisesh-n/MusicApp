@@ -29,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('closePopup').addEventListener('click', () => {
                     document.getElementById('updateSongPopup').style.display = 'none';
                 });
+                
+                document.getElementById('close-icon').addEventListener('click', () => {
+                    document.getElementById('updateSongPopup').style.display = 'none';
+                });
+
 
 
                 // Populate the popup form with the song's data

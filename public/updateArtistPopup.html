@@ -2,6 +2,7 @@
 
     <div class="popup-content">
         <h2>Update Artist</h2>
+        <span id="close-icon" class="close-icon" title="Close Popup">❌</span>
 
         <form id="updateArtistForm">
             <label for="updateArtistName">Update Artist's Name</label>
@@ -25,10 +26,12 @@
             <input type="text" id="UpdateArtistDebut" name="UpdateArtistDebut" placeholder="Example: 1997" required><br>
 
             <label for="UpdateArtistAlbums">Update Number of albums</label>
-            <input type="text" id="UpdateArtistAlbums" name="UpdateArtistAlbums" placeholder="Example: 6" required><br><br>
+            <input type="text" id="UpdateArtistAlbums" name="UpdateArtistAlbums" placeholder="Example: 6" required><br>
             
-            <button type="submit" id="updateArtist" class="popup-button">Update Artist</button><br>
-            <button type="button" id="closePopup" class="danger">Cancel</button>
+            <div class="form-actions">
+                <button type="button" id="closePopup" class="danger">Discard</button>
+                <button type="submit" id="updateArtist" class="popup-button">Update Artist</button>
+            </div>
         </form>
     </div>
 </div>

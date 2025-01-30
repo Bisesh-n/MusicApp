@@ -138,24 +138,26 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('show-songs').classList.remove("li-active")
 
             document.getElementById('user-list').innerHTML = 
-                users.map(user => `
-                    <div class="info-div">
-                        <h2>
-                            ${user.username}
+                users.map(user => 
+                    `<div class="info-div">
+                        <div class="info-title">
+                            <h3> ${user.username} </h3>
                             <span class="control-btn-box">
                                 <span id="updateUser_${user._id}" class="control-btn updateUser" title="Update user '${user.username}'">📝</span>
                                 <span id="deleteUser" class="control-btn" title="Delete user '${user.username}'" onclick="deleteUser('${user._id}', '${user.username}')">🗑️</span>
                             </span>
-                        </h2>
+                        </div>
+                        
                         <span><b>Full Name</b>: ${user.firstname} ${user.lastname}</span>
                         <span><b>Email</b>: ${user.email}</span>
                         <span><b>Phone</b>: ${user.phone}</span>
                         <span><b>Date of Birth</b>: ${user.dob}</span>
                         <span><b>Gender</b>: ${user.gender}</span>
                         <span><b>Address</b>: ${user.address}</span>
-                        <span><b>Created At</b>: ${new Date(user.createdAt).toLocaleString()}</span>
-                        <span><b>Last updated</b>: ${new Date(user.updatedAt).toLocaleString()}</span>
-                    </div>`)
+                        <span><b>Created At</b>: ${new Date(user.createdAt).toISOString()}</span>
+                        <span><b>Last updated</b>: ${new Date(user.updatedAt).toISOString()}</span>
+                    </div>`
+                )
                     .join('');
 
         }catch (error) {
@@ -193,13 +195,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const createdAt = new Date(artist.createdAt).toLocaleString();
                 
                 artistDiv.innerHTML = `
-                    <h2>
-                        ${artist.name} (${artist.songs.length} songs)
+                    <div class="info-title">
+                        <h3>
+                            ${artist.name} 
+                            <em> (${artist.songs.length} songs) </em>
+                        </h3>
+
                         <span class="control-btn-box">
                             <span id="updateArtist_${artist._id}" class="control-btn updateArtist" title="Update Artist '${artist.name}'">📝</span>
                             <span id="deleteArtist" class="control-btn" title="Delete Artist '${artist.name}'" onclick="deleteArtist('${artist._id}', '${artist.name}')">🗑️</span>
                         </span>
-                    </h2>
+                    </div>
+                    
                     <span><b>Date of Birth</b>: ${artist.dob}</span>
                     <span><b>Gender</b>: ${artist.gender}</span>
                     <span><b>Address</b>: ${artist.address}</span>
@@ -271,13 +278,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 songItem.classList.add("info-div");
                 
                 songItem.innerHTML = `
-                    <h2>
-                        ${song.title}
+                    <div class="info-title">
+                        <h3> ${song.title} </h3>
+
                         <span class="control-btn-box">
                             <span id="updateSong_${song._id}" class="control-btn updateSong" title="Update song '${song.title}'">📝</span> 
                             <span id="deleteSong" class="control-btn" title="Delete song '${song.title}'" onclick="deleteSong('${song._id}', '${song.title}')">🗑️</span>
                         </span>
-                    </h2>
+                    </div>
+
                     <ul>
                         <li><b>Artist</b>: ${song.artist.name}</li>
                         <li><b>Album</b>: ${song.album}</li>

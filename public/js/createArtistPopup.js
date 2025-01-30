@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('closePopup').addEventListener('click', () => {
                 document.getElementById('createArtistPopup').style.display = 'none';
             });
+                
+            document.getElementById('close-icon').addEventListener('click', () => {
+                document.getElementById('createArtistPopup').style.display = 'none';
+            });
+
 
             // Handle form submission
             document.getElementById('createArtistForm').addEventListener('submit', async (event) => {

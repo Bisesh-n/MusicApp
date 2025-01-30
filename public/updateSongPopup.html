@@ -2,6 +2,8 @@
 <div id="updateSongPopup" class="popup">
     <div class="popup-content">
         <h2>Update New Song</h2>
+        <span id="close-icon" class="close-icon" title="Close Popup">❌</span>
+
         <form id="updateSongForm">
             <label for="updateTitle">Update Song Title</label>
             <input type="text" id="updateTitle" name="updateTitle" required><br>
@@ -16,10 +18,12 @@
             <input type="text" id="updateGenre" name="updateGenre"><br>
 
             <label for="updateArtist">Update Artist</label>
-            <select id="updateArtist" name="updateArtist"></select><br><br>
+            <select id="updateArtist" name="updateArtist"></select><br>
 
-            <button type="submit" id="updateSong">Update Song</button><br>
-            <button type="button" id="closePopup" class="danger">Cancel</button>
+            <div class="form-actions">
+                <button type="button" id="closePopup" class="danger">Discard</button>
+                <button type="submit" id="updateSong">Update Song</button>
+            </div>
         </form>
     </div>
 </div>

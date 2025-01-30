@@ -2,6 +2,8 @@
 <div id="createSongPopup" class="popup">
     <div class="popup-content">
         <h2>Create New Song</h2>
+        <span id="close-icon" class="close-icon" title="Close Popup">❌</span>
+        
         <form id="createSongForm">
             <label for="title">Song Title</label>
             <input type="text" id="title" name="title" required><br>
@@ -16,10 +18,12 @@
             <input type="text" id="genre" name="genre"><br>
 
             <label for="artist">Artist</label>
-            <select id="artist" name="artist" required></select><br><br>
+            <select id="artist" name="artist" required></select><br>
 
-            <button type="submit">Create Song</button><br>
-            <button type="button" id="closeSongPopup" class="danger">Close</button>
+            <div class="form-actions">
+                <button type="button" id="closeSongPopup" class="danger">Cancel</button>
+                <button type="submit">Create Song</button>
+            </div>
         </form>
     </div>
 </div>

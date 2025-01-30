@@ -26,10 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('updateArtistPopup').style.display = 'flex';
 
                 // Close the update popup
-                document.getElementById('closePopup').addEventListener('click', () => {
+                 document.getElementById('closePopup').addEventListener('click', () => {
+                    document.getElementById('updateArtistPopup').style.display = 'none';
+                })
+                
+                document.getElementById('close-icon').addEventListener('click', () => {
                     document.getElementById('updateArtistPopup').style.display = 'none';
                 });
-
+                
 
                 // Populate the popup form with the artist's data
                 document.getElementById('updateArtistName').value = artist.name || '';

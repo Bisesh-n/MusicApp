@@ -30,11 +30,11 @@ input, select {
 }
 
 button {
-    font-size: 15px;
+    font-size: 14px;
     color: #fff;
     background-color: #3077f3;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
     transition: .3s;
 
@@ -53,27 +53,30 @@ nav ul {
 nav ul li {
     font-size: 15px;
     color: #002f71;
-    background: #d2faff;
-    border-radius: 10px;
+    background: #f8f8ff;
+    border-radius: 20px;
+    border: 1px solid #e2e2ff;
+
     cursor: pointer;
     transition: .3s;
     
     display: inline;
-    margin-right: 30px;
-    padding: 12px 18px;
+    margin-right: 15px;
+    padding: 12px 20px;
 }
 
 nav ul li:hover {
-    background: #a8f5ff;
+    background: #efefff;
 }
 
 /* for li active state */
 .li-active{
     color: white !important;
-    background: #268ed3 !important;
+    background: #1868cd !important;
+    border: 0;
 }
 .li-active:hover{
-    background: #1c79b8 !important;
+    background: #0e58b5 !important;
 }
 
 
@@ -90,13 +93,13 @@ nav ul li:hover {
 
 .container {
     background: #fff;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
     width: 80%;
     max-width: 800px;
     height: calc(100% - 55px);
-    padding: 10px 20px;
+    padding: 10px 20px 15px;
 }
 
 .forLoginReg h2{
@@ -149,8 +152,9 @@ nav ul li:hover {
 .lists .info-div{
     font-size: 14px;
     color: #162872;
-    background-color: #f5f5fe;
     border-radius: 15px;
+    background-color: #f8f8ff;
+    background-image: linear-gradient(to bottom right, white, #e5e5ff);
 
     display: flex;
     flex-direction: column;
@@ -160,13 +164,17 @@ nav ul li:hover {
     padding: 15px 20px;
 }
 
-.lists .info-div h2{
-    color: #f9c42d;
-    -webkit-text-stroke: 1px #dcaf2d;
-    margin: 0 !important;
-
-    display: flex;
+.lists .info-div .info-title{
+     display: flex;
     justify-content: space-between;
+}
+
+.lists .info-div .info-title h3{
+    margin: 0 !important;
+    background: #0e6fff;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
 }
 
 
@@ -223,10 +231,11 @@ nav ul li:hover {
 
 .list-btns{
     color: #150b7e;
-    background: #ebebff;
+    background-color: #f8f8ff;
+    border: 1px solid #e2e2ff;
 }
 .list-btns:hover{
-    background: #e1e1ff;
+    background: #efefff;
 }
 
 
@@ -246,12 +255,28 @@ nav ul li:hover {
 .popup-content {
     font-size: 13px;
     background: white;
-    border-radius: 15px;
+    border-radius: 20px;
     
+    position: relative;
     padding: 15px 20px;
     width: 440px;
     max-height: calc(100% - 55px);
     overflow-y: scroll;
+}
+
+.close-icon{
+    position: absolute;
+    top: 15px;
+    right: 12px;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-actions{
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
 }
 
 

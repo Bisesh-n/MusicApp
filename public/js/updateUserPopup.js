@@ -29,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('closePopup').addEventListener('click', () => {
                     document.getElementById('updateUserPopup').style.display = 'none';
                 });
+                
+                document.getElementById('close-icon').addEventListener('click', () => {
+                    document.getElementById('updateUserPopup').style.display = 'none';
+                });
+
 
 
                 // Populate the popup form with the user's data

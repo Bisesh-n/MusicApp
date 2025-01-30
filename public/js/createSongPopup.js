@@ -24,6 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('closeSongPopup').addEventListener('click', () => {
                 document.getElementById('createSongPopup').style.display = 'none';
             });
+                
+            document.getElementById('close-icon').addEventListener('click', () => {
+                document.getElementById('createSongPopup').style.display = 'none';
+            });
+
 
             // Load available artists
             const artistResponse = await fetch('http://localhost:5000/api/artists', {
