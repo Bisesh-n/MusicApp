@@ -13,7 +13,8 @@
             <div class="container">
 
                 <h2 class="dashboard-title">Admin Panel</h2>
-                <br>
+
+
 
                 <nav>
                     <ul>
@@ -22,61 +23,70 @@
                         <li id="show-artists">Artists</li>
                     </ul>
                 </nav>
-                <br>
+
 
 
                 <div id="content" class="content">
                     <!-- Content will be loaded here via JavaScript -->
                     
                     <div id="user-tab" class="tabs">
-                        <button id="openCreateUserPopup" class="list-btns">+ Create User</button><br><br>
+
+                        <div class="func-bar">
+                            <button id="openCreateUserPopup" class="list-btns">+ Create User</button>
+
+                            <span>
+                                <span class="search-icon">🔍</span>
+                                <input type="text" class="search-items" id="searchUsers" placeholder="Search Users" onkeyup="filterUsers()">
+                            </span>
+                        </div><br>
 
                         <div id="user-list" class="lists user-list">
                             <!-- Usernames will be displayed here -->
                         </div>
 
-
-                        <!-- <div id="user-table" class="user-table">
-                            <table>
-                                <thead>
-                                    <td>Username</td>
-                                    <td>Name</td>
-                                    <td>Email</td>
-                                    <td>Phone</td>
-                                    <td>DoB</td>
-                                    <td>Gender</td>
-                                    <td>Address</td>
-                                    <td>Updated At</td>
-                                    <td>Actions</td>
-                                </thead>
-
-                                <tbody id="user-td">
-                                    
-                                </tbody>
-                            </table>
-                        </div> -->
+                        <p class="not-found-text" id="noUsersMessage">No users found</p>
                     </div>
 
 
+
                     <div id="artist-tab" class="tabs">
-                        <button id="openCreateArtistPopup" class="list-btns">+ Create Artist</button><br><br>
+                        <div class="func-bar">
+                            <button id="openCreateArtistPopup" class="list-btns">+ Create Artist</button>
+
+                            <span>
+                                <span class="search-icon">🔍</span>
+                                <input type="text" class="search-items" id="searchArtists" placeholder="Search Artists" onkeyup="filterArtists()">
+                            </span>
+                        </div><br>
 
                         <div id="artist-list" class="lists">
                             <!-- Artist names will be displayed here -->
                         </div>
+
+                        <p class="not-found-text" id="noArtistsMessage">No Artists found</p>
                     </div>
 
 
+
                     <div id="song-tab" class="tabs">
-                        <button id="openCreateSongPopup" class="list-btns">+ Add a Song</button><br><br>
+                        <div class="func-bar">
+                            <button id="openCreateSongPopup" class="list-btns">+ Add a Song</button>
+
+                            <span>
+                                <span class="search-icon">🔍</span>
+                                <input type="text" class="search-items" id="searchSongs" placeholder="Search Songs" onkeyup="filterSongs()">
+                            </span>
+                        </div><br>
 
                         <div id="song-list" class="lists">
                             <!-- Song names will be displayed here -->
                         </div>
+
+                        <p class="not-found-text" id="noSongsMessage">No Songs found</p>
                     </div>
 
                 </div>
-                <br>
+
 
 
                 <button id="logout" class="danger">Log out</button>

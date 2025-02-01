@@ -106,10 +106,13 @@ async function deleteSong(songId, songTitle) {
 }
 
 
+function myfunc(){
+    document.getElementById('show-users').click(); 
+}
 
 
 /////////////////////////////////////////////////////////////////////
-// create
+// show
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -141,7 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 users.map(user => 
                     `<div class="info-div">
                         <div class="info-title">
-                            <h3> ${user.username} </h3>
+                            <span class="info-title-name">${user.username}</span>
+
                             <span class="control-btn-box">
                                 <span id="updateUser_${user._id}" class="control-btn updateUser" title="Update user '${user.username}'">📝</span>
                                 <span id="deleteUser" class="control-btn" title="Delete user '${user.username}'" onclick="deleteUser('${user._id}', '${user.username}')">🗑️</span>
@@ -191,15 +195,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Create a div for each artist
                 const artistDiv = document.createElement('div');
                 artistDiv.classList.add("info-div");
-                const updatedAt = new Date(artist.updatedAt).toLocaleString();
-                const createdAt = new Date(artist.createdAt).toLocaleString();
+                const updatedAt = new Date(artist.updatedAt).toISOString().split('T')[0];
                 
                 artistDiv.innerHTML = `
                     <div class="info-title">
-                        <h3>
-                            ${artist.name} 
-                            <em> (${artist.songs.length} songs) </em>
-                        </h3>
+                        <span style="display:flex">
+                            <span class="info-title-name">${artist.name}</span>
+                            <span class="song-count">${artist.songs.length} song/s</span>
+                        </span>
 
                         <span class="control-btn-box">
                             <span id="updateArtist_${artist._id}" class="control-btn updateArtist" title="Update Artist '${artist.name}'">📝</span>
@@ -212,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span><b>Address</b>: ${artist.address}</span>
                     <span><b>Debut Year</b>: ${artist.first_release_year}</span>
                     <span><b>Albums Released</b>: ${artist.no_of_albums_released}</span>
-                    <span><b>Created at</b>: ${createdAt}</span>
                     <span><b>Last Updated</b>: ${updatedAt}</span>
                     <span><b>Songs</b>:</span>
                 `;
@@ -279,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 songItem.innerHTML = `
                     <div class="info-title">
-                        <h3> ${song.title} </h3>
+                        <span class="info-title-name">${song.title}</span>
 
                         <span class="control-btn-box">
                             <span id="updateSong_${song._id}" class="control-btn updateSong" title="Update song '${song.title}'">📝</span> 
@@ -292,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <li><b>Album</b>: ${song.album}</li>
                         <li><b>Genre</b>: ${song.genre}</li>
                         <li><b>Year</b>: ${song.year}</li>
-                        <li><b>Last updated</b>: ${new Date(song.updatedAt).toLocaleString()}</li>
+                        <li><b>Last updated</b>: ${new Date(song.updatedAt).toISOString().split('T')[0]}</li>
                     </ul>
                 `;
                 songList.appendChild(songItem);
@@ -311,10 +313,78 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('token');
         window.location.href = 'index.html';
     });
+
 });
 
 
 
-function myfunc(){
-    document.getElementById('show-users').click(); 
+
+
+// Filter Users
+function filterUsers() {
+    let input = document.getElementById("searchUsers").value.toLowerCase();
+    let userDivs = document.querySelectorAll("#user-list .info-div"); // Select all user divs
+    let noUsersMsg = document.getElementById("noUsersMessage"); // Get the no users message div
+    let found = false;
+
+    userDivs.forEach(div => {
+        let text = div.querySelector(".info-title .info-title-name").innerText.toLowerCase();
+        if (text.includes(input)) {
+            div.style.display = "";
+            found = true;
+        } else {
+            div.style.display = "none";
+        }
+    });
+
+    // Show or hide the "No users found" message
+    noUsersMsg.style.display = found ? "none" : "block";
+}
+
+
+
+
+// Filter Artists
+function filterArtists() {
+    let input = document.getElementById("searchArtists").value.toLowerCase();
+    let artistsDivs = document.querySelectorAll("#artist-list .info-div"); // Select all artists divs
+    let noArtistsMsg = document.getElementById("noArtistsMessage"); // Get the no artists message div
+    let found = false;
+
+    artistsDivs.forEach(div => {
+        let text = div.querySelector(".info-title .info-title-name").innerText.toLowerCase();
+        if (text.includes(input)) {
+            div.style.display = "";
+            found = true;
+        } else {
+            div.style.display = "none";
+        }
+    });
+
+    // Show or hide the "No Artists found" message
+    noArtistsMsg.style.display = found ? "none" : "block";
+}
+
+
+
+
+// Filter Songs
+function filterSongs() {
+    let input = document.getElementById("searchSongs").value.toLowerCase();
+    let songsDivs = document.querySelectorAll("#song-list .info-div"); // Select all songs divs
+    let noSongsMsg = document.getElementById("noSongsMessage"); // Get the no songs message div
+    let found = false;
+
+    songsDivs.forEach(div => {
+        let text = div.querySelector(".info-title .info-title-name").innerText.toLowerCase();
+        if (text.includes(input)) {
+            div.style.display = "";
+            found = true;
+        } else {
+            div.style.display = "none";
+        }
+    });
+
+    // Show or hide the "No Songs found" message
+    noSongsMsg.style.display = found ? "none" : "block";
 }
