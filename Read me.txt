@@ -4,6 +4,6 @@
 
 3. Use 'npm start' command to start the server and connect to MongoDB
 
-4. Go to 'localhost:5000/index.js' to open the log-in UI
+4. Go to 'localhost:5000/index.html' to open the log-in UI
 
 5. Then log in or register

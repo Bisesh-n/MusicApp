@@ -29,6 +29,8 @@ input, select {
 
     margin-bottom: 10px;
     padding: 10px;
+
+    flex: 1;
 }
 
 
@@ -38,12 +40,17 @@ input, select {
 }
 .search-items{
     border-radius: 25px;
-    border: 2px solid #cacafa;
+    border: 2px solid #dbdbff;
     background: transparent;
 
     width: 160px;
     padding: 12px 12px 12px 35px;
     margin: 0;
+
+    transition: .25s;
+}
+.search-items:focus{
+    border: 2px solid #8f8fff;
 }
 
 
@@ -134,7 +141,7 @@ nav ul li:hover {
     overflow-y: auto;
 }
 .forLogin{
-    height: 340px;
+    height: 365px;
 }
 
 @media screen and (max-width:960px){
